@@ -7,8 +7,9 @@ import 'package:test_cloud_firebase/auth/auth_error.dart';
 abstract class AppState {
   final bool isLoading;
   final AuthError? authError;
+  final User? user;
 
-  const AppState(this.isLoading, this.authError);
+  const AppState({required this.isLoading, this.authError, this.user});
 }
 
 @immutable
@@ -20,8 +21,8 @@ class AppStateLoggedIn extends AppState {
       {required this.user,
       required this.images,
       required bool isLoading,
-      required AuthError? authError})
-      : super(isLoading, authError);
+      AuthError? authError})
+      : super(isLoading: isLoading, authError: authError);
   //loading the list when new images are added
 
   @override
@@ -42,8 +43,10 @@ class AppStateLoggedIn extends AppState {
 
 @immutable
 class AppStateLoggedOut extends AppState {
-  const AppStateLoggedOut(bool isLoading, AuthError? authError)
-      : super(isLoading, authError);
+  AppStateLoggedOut({
+    required bool isLoading,
+    AuthError? authError,
+  }) : super(isLoading: isLoading, authError: authError);
   @override
   String toString() =>
       'AppStateLoggedOut,isLoadin=$isLoading,authError=$authError';
@@ -51,15 +54,28 @@ class AppStateLoggedOut extends AppState {
 
 @immutable
 class AppStateIsInRegistrationView extends AppState {
-  const AppStateIsInRegistrationView(bool isLoading, AuthError? authError)
-      : super(isLoading, authError);
+  const AppStateIsInRegistrationView(
+      {required bool isLoading, AuthError? authError})
+      : super(isLoading: isLoading, authError: authError);
 }
 
+//extract user from appstate
 extension GetUser on AppState {
   User? get user {
     final cls = this;
     if (cls is AppStateLoggedIn) {
       return cls.user;
+    } else {
+      return null;
+    }
+  }
+}
+
+extension GetImages on AppState {
+  Iterable<Reference>? get images {
+    final cls = this;
+    if (cls is AppStateLoggedIn) {
+      return cls.images;
     } else {
       return null;
     }
