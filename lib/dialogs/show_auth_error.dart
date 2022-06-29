@@ -11,7 +11,7 @@ Future<void> showAuthError({
       title: authError.dialogTitle,
       content: authError.dialogText,
       optionsBuilder: () => {
-            'cancel': false,
+      'ok': true,
             'logout': true,
     },
   );
