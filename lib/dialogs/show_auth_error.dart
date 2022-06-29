@@ -13,5 +13,6 @@ Future<void> showAuthError({
       optionsBuilder: () => {
             'cancel': false,
             'logout': true,
-          });
+    },
+  );
 }
