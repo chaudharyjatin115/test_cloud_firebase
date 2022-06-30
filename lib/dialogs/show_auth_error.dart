@@ -16,3 +16,17 @@ Future<void> showAuthError({
     },
   );
 }
+Future<void> showLoadingError({
+  required Object authError,
+  required BuildContext context,
+}) {
+  return showGenericDialog<void>(
+    context: context,
+    title: 'theres an error',
+    content: authError.toString(),
+    optionsBuilder: () => {
+      'ok': true,
+      'logout': true,
+    },
+  );
+}
