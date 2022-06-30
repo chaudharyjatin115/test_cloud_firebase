@@ -104,7 +104,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     });
 
     // intializing the app
-    on<AppEventLogOut>(
+    on<AppEventInitialize>(
       (event, emit) async {
 //get the current user
         final user = FirebaseAuth.instance.currentUser;
