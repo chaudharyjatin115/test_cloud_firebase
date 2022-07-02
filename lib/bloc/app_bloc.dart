@@ -136,7 +136,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               .createUserWithEmailAndPassword(email: email, password: password);
           // get user images with uid
           emit(AppStateLoggedIn(
-              user: credential.user!, images: [], isLoading: false));
+              user: credential.user!, images: const [], isLoading: false));
         } // throwin up an error
         on FirebaseAuthException catch (e) {
           emit(

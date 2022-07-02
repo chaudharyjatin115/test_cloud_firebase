@@ -24,6 +24,7 @@ abstract class AppState {
 
 class AppStateLoggedIn extends AppState {
   // when you are logged in you just need user and refrence of iterable of all the images
+
   final User user;
   final Iterable<Reference> images;
 

@@ -18,6 +18,7 @@ const Map<String, AuthError> authErrorMapping = {
   'operation-not-allowed': AuthErrorOperationNotAllowed(),
   'email-already-in-user': AuthErrorEmailAlreadyInUse(),
   'requires-recent-login': AuthErrorRequiresRecentLogin(),
+  'permission denied': AuthErrorPermissionDenied(),
 };
 
 //base auth error class
@@ -104,4 +105,12 @@ class AuthErrorEmailAlreadyInUse extends AuthError {
             dialogTitle: 'Email already used by other user',
             dialogText: 'Please try other email');
 
+}
+
+@immutable
+class AuthErrorPermissionDenied extends AuthError {
+  const AuthErrorPermissionDenied()
+      : super(
+            dialogTitle: 'You dont have permission ',
+            dialogText: 'user dont have permission ');
 }
