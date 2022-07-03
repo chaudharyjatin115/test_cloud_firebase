@@ -114,7 +114,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           // go grab the users uploaded images
           final images = await _getImages(user.uid);
           emit(
-            AppStateLoggedIn(user: user, images: images, isLoading: false),
+            AppStateLoggedIn(user: user, images: [], isLoading: false),
           );
         }
       },
